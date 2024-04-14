@@ -7,6 +7,9 @@
 .container {
     width: var(--default-layout-width, 1500px);
     display: flex;
+    padding-right: 34px;
+    padding-left: 13px;
+    // padding: 0 var(--default-layout-horizontal-spacer);
 }
 
 .content {

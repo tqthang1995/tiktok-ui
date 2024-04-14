@@ -24,6 +24,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-right: 34px;
+    padding-left: 13px;
+    // padding: 0 var(--default-layout-horizontal-spacer);
 }
 
 .search-result,
@@ -114,8 +117,11 @@
     }
 }
 
+// Action
+
 .action {
     display: flex;
+    align-items: center;
 }
 
 .more-btn {
@@ -123,4 +129,25 @@
     margin-left: 24px;
     padding: 4px 8px;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.action-btn {
+    color: #161823;
+    background-color: transparent;
+    font-size: 2.6rem;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 12px;
+}
+
+.action-svg {
+    margin-left: 12px;
 }
