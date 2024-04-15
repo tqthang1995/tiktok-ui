@@ -29,83 +29,7 @@
     // padding: 0 var(--default-layout-horizontal-spacer);
 }
 
-.search-result,
-.search {
-    width: 500px;
-}
-
-.search {
-    background: rgba(22, 24, 35, 0.06);
-    border-radius: var(--search-border-radius);
-    height: var(--search-height-input);
-    display: flex;
-    position: relative;
-    border: 1.5px solid transparent;
-
-    input {
-        padding-left: 12px;
-        flex: 1;
-        font-size: 1.6rem;
-        color: var(--black);
-        background: transparent;
-        line-height: 21px;
-        // width: 431px;
-        height: 100%;
-        caret-color: var(--primary);
-    }
-
-    input:not(:placeholder-shown) ~ .search-btn {
-        color: rgba(22, 24, 35, 0.75);
-    }
-
-    &::after {
-        content: '';
-        position: absolute;
-        top: var(--search-top-spacer);
-        right: var(--search-button-width);
-        height: calc(var(--search-height-input) - var(--search-top-spacer) * 2);
-        width: 1px;
-        background-color: rgba(22, 24, 35, 0.12);
-    }
-
-    &:focus-within {
-        border-color: rgba(22, 24, 35, 0.2);
-    }
-}
-
-.search-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: rgba(22, 24, 35, 0.5);
-    padding: 5px 12px;
-}
-
-.clear,
-.loading {
-    position: absolute;
-    right: calc(var(--search-button-width) + 16px);
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(22, 24, 35, 0.34);
-}
-
-.search-btn {
-    width: var(--search-button-width);
-    height: 100%;
-    border-top-right-radius: var(--search-border-radius);
-    border-bottom-right-radius: var(--search-border-radius);
-    font-size: 1.8rem;
-    color: rgba(22, 24, 35, 0.34);
-
-    &:hover {
-        cursor: pointer;
-        background-color: rgba(22, 24, 35, 0.03);
-    }
-
-    &:active {
-        background-color: rgba(22, 24, 35, 0.06);
-    }
-}
+// Action
 
 .upload {
     border-color: rgba(22, 24, 35, 0.12);
@@ -116,8 +40,6 @@
         color: rgb(22, 24, 35);
     }
 }
-
-// Action
 
 .action {
     display: flex;
@@ -136,8 +58,25 @@
     color: #161823;
     background-color: transparent;
     font-size: 2.6rem;
-    padding: 4px 12px;
+    padding: 4px 10px;
     cursor: pointer;
+    position: relative;
+    display: flex;
+}
+
+.badge {
+    position: absolute;
+    top: -3px;
+    right: 0px;
+    padding: 0px 6px;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--white);
+    font-family: 'ProximaNova', sans-serif;
+    background-color: var(--primary);
 }
 
 .user-avatar {
@@ -145,9 +84,5 @@
     height: 32px;
     object-fit: cover;
     border-radius: 50%;
-    margin-left: 12px;
-}
-
-.action-svg {
-    margin-left: 12px;
+    margin-left: 14px;
 }
