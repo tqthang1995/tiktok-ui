@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 
+import * as searchService from '~/services/SearchService';
 import { useDebounce } from '~/hooks';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
@@ -29,17 +30,16 @@ function Search() {
             return;
         }
 
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+            const result = await searchService.search(debounced);
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+
+        fetchApi();
     }, [debounced]);
 
     const handleClear = () => {
