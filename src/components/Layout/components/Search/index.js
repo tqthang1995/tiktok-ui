@@ -50,6 +50,17 @@ function Search() {
 
     const handleHideResult = () => setShowResult(false);
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(e.target.value.trimStart());
+        }
+    };
+
+    const handleSubmit = () => {
+        console.log('will navigate to search page');
+    };
+
     return (
         <HeadlessTippy
             appendTo={document.body}
@@ -74,7 +85,7 @@ function Search() {
                     value={searchValue}
                     placeholder="Search"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value.trimStart())}
+                    onChange={handleChange}
                     onFocus={() => setShowResult(true)}
                 ></input>
                 {!!searchValue && !loading && (
@@ -84,7 +95,7 @@ function Search() {
                 )}
 
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onClick={handleSubmit} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon></SearchIcon>
                 </button>
             </div>

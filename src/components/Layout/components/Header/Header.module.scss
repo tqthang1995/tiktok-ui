@@ -9,13 +9,15 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
     height: var(--default-layout-header-height, 60px);
     width: calc(100% + 0px);
-    // top: 0px;
-    // position: fixed;
+    top: 0px;
+    left: 0px;
+    position: fixed;
     -webkit-box-align: center;
     align-items: center;
     background: rgb(255, 255, 255);
     z-index: 1000;
     display: flex;
+    z-index: 10;
 }
 
 .inner {
@@ -27,6 +29,10 @@
     padding-right: 34px;
     padding-left: 13px;
     // padding: 0 var(--default-layout-horizontal-spacer);
+}
+
+.logo-link {
+    display: flex;
 }
 
 // Action
@@ -75,7 +81,7 @@
     font-size: 1.4rem;
     font-weight: 600;
     color: var(--white);
-    font-family: 'ProximaNova', sans-serif;
+    font-family: var(--font-family);
     background-color: var(--primary);
 }
 

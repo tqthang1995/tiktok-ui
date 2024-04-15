@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react';
+import { Link } from 'react-router-dom';
 
 import images from '~/assets/images';
 import styles from './Header.module.scss';
@@ -22,6 +23,7 @@ import Menu from '~/components/Popper/Menu';
 import { InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -62,7 +64,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = true;
+    const currentUser = false;
 
     const handleMenuOnchange = (menuItem) => {
         switch (menuItem.type) {
@@ -101,7 +103,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="logo clone from TikTok" />
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="logo clone from TikTok" />
+                </Link>
                 <Search></Search>
                 <div className={cx('action')}>
                     <Button className={cx('upload')} outlineSecondary leftIcon={<FontAwesomeIcon icon={faPlus} />}>
@@ -126,7 +130,7 @@ function Header() {
                             <Button primary>Log in</Button>
                         </>
                     )}
-                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuOnchange}>
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} hideOnClick={false} onChange={handleMenuOnchange}>
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
