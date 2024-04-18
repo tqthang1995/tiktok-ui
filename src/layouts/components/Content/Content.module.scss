@@ -1,0 +1,11 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 1000px;
+}
+
+.video-item {
+    border-bottom: 1px solid #eaeaeb;
+}

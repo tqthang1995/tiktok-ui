@@ -14,7 +14,6 @@ function ModalProvider({ children }) {
 
     const handleShowEditProfile = () => {
         body.classList.add('hidden');
-        console.log('Clicked Edit!!!');
         setActiveEditProfile(true);
     };
 

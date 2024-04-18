@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { loginService } from '~/services/UserService';
+import { loginService } from '~/services/UserServices';
 import { ModalContext } from '../ModalProvider';
 
 export const LoginContext = createContext();
@@ -27,7 +27,7 @@ function LoginProvider({ children }) {
         setDataUser(data);
     };
 
-    const fetchApi = async (email, password) => {
+    const loginApi = async (email, password) => {
         setLoading(true);
         const result = await loginService(email, password);
 
@@ -59,7 +59,7 @@ function LoginProvider({ children }) {
         showErrorRegister,
         setShowErrorRegister,
         setShowError,
-        fetchApi,
+        loginApi: loginApi,
         handleSetData,
         handleDeleteData,
         handleSetDataUser,

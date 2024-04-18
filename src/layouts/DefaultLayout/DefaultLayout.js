@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 import { ModalContext } from '~/components/ModalProvider';
 import MenuModalItem from '~/components/MenuModalItem/MenuModalItem';
 import { LoginContext } from '~/components/LoginProvider';
-import { getCurrentUserService } from '~/services/UserService';
+import { getCurrentUserService } from '~/services/UserServices';
 import LogoutForm from '~/components/AuthForms/LogoutForm';
 
 const cx = classNames.bind(styles);

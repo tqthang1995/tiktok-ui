@@ -104,8 +104,6 @@ function Header() {
     const contextLogin = useContext(LoginContext);
 
     const userMenuTab = contextLogin.data ? userMenu : MENU_ITEMS;
-    console.log(contextLogin.data);
-    console.log(userMenuTab);
 
     return (
         <header className={cx('wrapper')}>

@@ -1,4 +1,4 @@
-import Home from '~/pages/Home';
+import Home from '~/pages/Home/Home';
 import Following from '~/pages/Following';
 import Upload from '~/pages/Upload';
 import Profile from '~/pages/Profile';

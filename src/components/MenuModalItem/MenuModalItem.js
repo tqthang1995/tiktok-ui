@@ -5,21 +5,24 @@ import { ModalContext } from '../ModalProvider';
 import LoginAuthForm from '../AuthForms/UserAuthForm/LoginAuthForm';
 import LoginForm from '../AuthForms/LoginForm';
 import { XIcon } from '../Icons';
+import RegisterForm from '../AuthForms/RegisterForm';
+import RegisterAuthForm from '../AuthForms/UserAuthForm/RegisterAuthForm';
 
 const cx = classNames.bind(styles);
 
 function MenuModalItem() {
     const context = useContext(ModalContext);
 
-    console.log('menu', context);
-
     return (
         <div className={cx('modal-mask')}>
+            {context.isRegister && <span className={cx('notify')}>Register Account Success</span>}
             <div className={cx('wrapper')}>
                 <div className={cx('container')}>
                     <div className={cx('inner')}>
                         {context.typeForm === 'loginform' && <LoginForm />}
                         {context.typeForm === 'login' && <LoginAuthForm />}
+                        {context.typeForm === 'registerform' && <RegisterForm />}
+                        {context.typeForm === 'register' && <RegisterAuthForm />}
                     </div>
 
                     <div className={cx('keep-stable')}>

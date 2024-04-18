@@ -16,7 +16,6 @@ function Menu({ children, items = [], hideOnClick = true, onChange = defaultFn }
     const [history, setHistory] = useState([{ data: items }]);
     const currentMenu = history[history.length - 1];
     const contextModal = useContext(ModalContext);
-    console.log('item', history);
 
     useEffect(() => {
         if (items !== undefined) {
