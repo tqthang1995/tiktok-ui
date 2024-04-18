@@ -66,9 +66,31 @@ const MENU_ITEMS = [
     },
 ];
 
-function Header() {
-    const currentUser = false;
+const userMenu = [
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'View profile',
+        to: '/@thangtq14',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCoins} />,
+        title: 'Get coins',
+        to: '/coin',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faGear} />,
+        title: 'Settings',
+        to: '/settings',
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <FontAwesomeIcon icon={faSignOut} />,
+        title: 'Log out',
+        separate: true,
+    },
+];
 
+function Header() {
     const handleMenuOnchange = (menuItem) => {
         switch (menuItem.type) {
             case 'language':
@@ -78,34 +100,12 @@ function Header() {
         }
     };
 
-    const userMenu = [
-        {
-            icon: <FontAwesomeIcon icon={faUser} />,
-            title: 'View profile',
-            to: '/@thangtq14',
-        },
-        {
-            icon: <FontAwesomeIcon icon={faCoins} />,
-            title: 'Get coins',
-            to: '/coin',
-        },
-        {
-            icon: <FontAwesomeIcon icon={faGear} />,
-            title: 'Settings',
-            to: '/settings',
-        },
-        ...MENU_ITEMS,
-        {
-            icon: <FontAwesomeIcon icon={faSignOut} />,
-            title: 'Log out',
-            to: '/logout',
-            separate: true,
-        },
-    ];
-
     const contextModal = useContext(ModalContext);
+    const contextLogin = useContext(LoginContext);
 
-    console.log(contextModal);
+    const userMenuTab = contextLogin.data ? userMenu : MENU_ITEMS;
+    console.log(contextLogin.data);
+    console.log(userMenuTab);
 
     return (
         <header className={cx('wrapper')}>
@@ -118,7 +118,7 @@ function Header() {
                     <Button className={cx('upload')} outlineSecondary leftIcon={<FontAwesomeIcon icon={faPlus} />}>
                         Upload
                     </Button>
-                    {currentUser ? (
+                    {contextLogin.data ? (
                         <>
                             <Tippy delay={[0, 50]} content="Message" placement="bottom">
                                 <button className={cx('action-btn')}>
@@ -139,8 +139,8 @@ function Header() {
                             </Button>
                         </>
                     )}
-                    <Menu items={currentUser ? userMenu : MENU_ITEMS} hideOnClick={false} onChange={handleMenuOnchange}>
-                        {currentUser ? (
+                    <Menu items={userMenuTab} hideOnClick={false} onChange={handleMenuOnchange}>
+                        {contextLogin.data ? (
                             <Image
                                 className={cx('user-avatar')}
                                 alt="nguyen van A"

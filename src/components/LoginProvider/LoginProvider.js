@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { loginService } from '~/services/LoginService';
+import { loginService } from '~/services/UserService';
 import { ModalContext } from '../ModalProvider';
 
 export const LoginContext = createContext();
@@ -14,8 +14,6 @@ function LoginProvider({ children }) {
 
     //data random user
     const [dataUser, setDataUser] = useState();
-
-    console.log('Data: ', data);
 
     const handleDeleteData = () => {
         setData(null);
@@ -37,15 +35,15 @@ function LoginProvider({ children }) {
             setData(result.data);
             localStorage.setItem('token', result.meta.token);
 
+            setLoading(false);
+            contentModal.handleHideModal();
+            setIsNotify(true);
+
             setShowError(false);
-            setTimeout(() => {
-                setLoading(false);
-                contentModal.handleHideModal();
-                setIsNotify(true);
-            }, 2500);
+
             setTimeout(() => {
                 setIsNotify(false);
-            }, 2200);
+            }, 1500);
         } else {
             setLoading(false);
             setShowError(true);

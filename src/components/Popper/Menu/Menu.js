@@ -5,7 +5,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Tippy from '@tippyjs/react/headless';
 import MenuItem from './MenuItem';
 import Header from './Header';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ModalContext } from '~/components/ModalProvider';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +15,14 @@ const defaultFn = () => {};
 function Menu({ children, items = [], hideOnClick = true, onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
     const currentMenu = history[history.length - 1];
+    const contextModal = useContext(ModalContext);
+    console.log('item', history);
+
+    useEffect(() => {
+        if (items !== undefined) {
+            setHistory([{ data: items }]);
+        }
+    }, [items]);
 
     const renderItems = () => {
         return currentMenu.data.map((item, index) => {
@@ -25,6 +34,9 @@ function Menu({ children, items = [], hideOnClick = true, onChange = defaultFn }
                     onClick={() => {
                         if (isParent) {
                             setHistory((prev) => [...prev, item.children]);
+                        } else if (item.title === 'Log out') {
+                            console.log('log out');
+                            contextModal.handleShowModalLogOut();
                         } else {
                             onChange(item);
                         }
