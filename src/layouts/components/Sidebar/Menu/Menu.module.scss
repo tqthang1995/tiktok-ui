@@ -1,0 +1,43 @@
+.menu-item {
+    position: relative;
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 3.2rem;
+    transition: background-color 200ms ease-in-out 0s;
+    color: var(--text-color);
+
+    &.active {
+        color: var(--primary);
+
+        .icon {
+            display: none;
+        }
+
+        .active-icon {
+            display: flex;
+        }
+
+        .title {
+            color: var(--primary); // Màu đỏ khi active
+        }
+    }
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.title {
+    color: rgb(22, 24, 35);
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin-left: 8px;
+}

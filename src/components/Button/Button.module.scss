@@ -95,3 +95,14 @@
     padding: 14px 16px;
     min-width: 140px;
 }
+
+.white {
+    padding: 0 16px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 1);
+    height: 36px;
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
