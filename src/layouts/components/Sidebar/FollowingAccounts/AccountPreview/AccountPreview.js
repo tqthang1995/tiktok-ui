@@ -17,10 +17,10 @@ function AccountPreview() {
             </div>
             <div className={cx('body')}>
                 <p className={cx('nickname')}>
-                    <strong>quocnguyenphu</strong>
+                    <strong>Thang.Tran</strong>
                     <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
                 </p>
-                <p className={cx('name')}>Quốc Nguyễn Phú</p>
+                <p className={cx('name')}>Thang Tran Quoc</p>
                 <p className={cx('analytics')}>
                     <strong className={cx('value')}>8.2M </strong>
                     <span className={cx('label')}>Followers</span>
