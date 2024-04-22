@@ -16,6 +16,8 @@ import {
 import { LikeVideoService, UnLikeVideoService } from '~/services/PostServices';
 import { VideoContext } from '../VideoProvider';
 import { CommentContext } from '../CommentProvider';
+import { ModalContext } from '../ModalProvider';
+import { LoginContext } from '../LoginProvider';
 
 const cx = classNames.bind(styles);
 
@@ -36,6 +38,8 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
     const [progress, setProgress] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
     const [countLiked, setCountLiked] = useState();
+    const contextModal = useContext(ModalContext);
+    const contextLogin = useContext(LoginContext);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
@@ -227,43 +231,85 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
                     </div>
                 </div>
             </div>
-            <div className={cx('icons-video')}>
-                <div ref={myRef} className={cx('autoplay-video-ref')} />
-                <button>
-                    {!isLiked && (
-                        <span className={cx('cover-icon')} onClick={setLikeVideo}>
-                            <HeartVideoIcon />
+            {contextLogin.data && (
+                <div className={cx('icons-video')}>
+                    <div ref={myRef} className={cx('autoplay-video-ref')} />
+                    <button>
+                        {!isLiked && (
+                            <span className={cx('cover-icon')} onClick={setLikeVideo}>
+                                <HeartVideoIcon />
+                            </span>
+                        )}
+                        {isLiked && (
+                            <span className={cx('cover-icon')} onClick={setUnLikeVideo}>
+                                <HeartVideoActiveIcon />
+                            </span>
+                        )}
+                        <strong className={cx('count-icon')}>{countLiked}</strong>
+                    </button>
+
+                    <button>
+                        <span className={cx('cover-icon')}>
+                            <OpenCommentIcon />
                         </span>
-                    )}
-                    {isLiked && (
-                        <span className={cx('cover-icon')} onClick={setUnLikeVideo}>
-                            <HeartVideoActiveIcon />
+                        <strong className={cx('count-icon')}>{item.comments_count}</strong>
+                    </button>
+
+                    <button>
+                        <span className={cx('cover-icon')}>
+                            <FavoriteVideoIcon />
                         </span>
-                    )}
-                    <strong className={cx('count-icon')}>{countLiked}</strong>
-                </button>
+                        <strong className={cx('count-icon')}>0</strong>
+                    </button>
 
-                <button>
-                    <span className={cx('cover-icon')}>
-                        <OpenCommentIcon />
-                    </span>
-                    <strong className={cx('count-icon')}>{item.comments_count}</strong>
-                </button>
+                    <button>
+                        <span className={cx('cover-icon')}>
+                            <ShareIcon />
+                        </span>
+                        <strong className={cx('count-icon')}>{item.shares_count}</strong>
+                    </button>
+                </div>
+            )}
 
-                <button>
-                    <span className={cx('cover-icon')}>
-                        <FavoriteVideoIcon />
-                    </span>
-                    <strong className={cx('count-icon')}>0</strong>
-                </button>
+            {!contextLogin.data && (
+                <div className={cx('icons-video')}>
+                    <div ref={myRef} className={cx('autoplay-video-ref')} />
+                    <button>
+                        {!isLiked && (
+                            <span className={cx('cover-icon')} onClick={contextModal.handleShowModal}>
+                                <HeartVideoIcon />
+                            </span>
+                        )}
+                        {isLiked && (
+                            <span className={cx('cover-icon')} onClick={contextModal.handleShowModal}>
+                                <HeartVideoActiveIcon />
+                            </span>
+                        )}
+                        <strong className={cx('count-icon')}>{countLiked}</strong>
+                    </button>
 
-                <button>
-                    <span className={cx('cover-icon')}>
-                        <ShareIcon />
-                    </span>
-                    <strong className={cx('count-icon')}>{item.shares_count}</strong>
-                </button>
-            </div>
+                    <button>
+                        <span className={cx('cover-icon')}>
+                            <OpenCommentIcon />
+                        </span>
+                        <strong className={cx('count-icon')}>{item.comments_count}</strong>
+                    </button>
+
+                    <button>
+                        <span className={cx('cover-icon')}>
+                            <FavoriteVideoIcon />
+                        </span>
+                        <strong className={cx('count-icon')}>0</strong>
+                    </button>
+
+                    <button>
+                        <span className={cx('cover-icon')}>
+                            <ShareIcon />
+                        </span>
+                        <strong className={cx('count-icon')}>{item.shares_count}</strong>
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
