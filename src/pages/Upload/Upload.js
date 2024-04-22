@@ -18,7 +18,6 @@ function Upload() {
     const [loaded, setLoaded] = useState(false);
 
     const handleFileChange = (event) => {
-        console.log(event.target.files[0]);
         setSelectedFile(event.target.files[0]);
         setIsFile(true);
     };
@@ -35,9 +34,8 @@ function Upload() {
             formData.append('music', 'Hot Trend Tiktok 2023 Music!');
             formData.append('viewable', 'public');
 
-            const result = await postVideoService(formData);
+            await postVideoService(formData);
 
-            console.log('result post video: ', result);
             setIsFile(false);
             setLoading(false);
             setLoaded(true);
@@ -51,7 +49,6 @@ function Upload() {
             <div className={cx('wrapper')}>
                 <div className={cx('container')}>
                     <div className={cx('body-upload')}>
-                        {console.log('Loading: ', loading)}
                         {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
                         <span className={cx('icon-upload')}>
                             <Image src={images.uploadImage}></Image>

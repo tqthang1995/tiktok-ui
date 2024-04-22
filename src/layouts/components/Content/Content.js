@@ -8,7 +8,6 @@ import VideoInfoOverlay from '~/components/VideoInfoOverlay';
 const cx = classNames.bind(styles);
 
 function Content({ data }) {
-    console.log('DataVideo:', data);
     return (
         <div className={cx('wrapper')}>
             {data.map((item, index) => (
