@@ -34,8 +34,6 @@ function RegisterForm() {
             const fetchApi = async () => {
                 setLoading(true);
                 const result = await RegisterService(email, password);
-                console.log(result);
-                console.log(result.meta);
                 if (result && result.meta) {
                     contextLogin.loginApi(email, password);
 

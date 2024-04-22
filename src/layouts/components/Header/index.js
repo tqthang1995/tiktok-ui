@@ -140,7 +140,8 @@ function Header() {
                             <Button
                                 className={cx('upload')}
                                 outlineSecondary
-                                leftIcon={<FontAwesomeIcon icon={faPlus} onClick={contextModal.handleShowModal} />}
+                                leftIcon={<FontAwesomeIcon icon={faPlus} />}
+                                onClick={contextModal.handleShowModal}
                             >
                                 Upload
                             </Button>
