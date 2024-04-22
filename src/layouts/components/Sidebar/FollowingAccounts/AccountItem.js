@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './FollowingAccounts.module.scss';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';

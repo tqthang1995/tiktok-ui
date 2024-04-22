@@ -24,7 +24,8 @@ function LogoutForm() {
         setLoading(false);
         setTimeout(() => {
             contextModal.setIsLogout(false);
-        }, 1500);
+            window.location.href = '/'; // Navigate to the home page route
+        }, 1000);
     };
 
     return (
