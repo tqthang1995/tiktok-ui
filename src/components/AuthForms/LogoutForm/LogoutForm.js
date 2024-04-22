@@ -17,16 +17,14 @@ function LogoutForm() {
     const [loading, setLoading] = useState(false);
 
     const handleLogout = async () => {
-        console.log('removeItem');
         setLoading(true);
-        // await logoutService();
         localStorage.removeItem('token');
         contextLogin.handleDeleteData();
         contextModal.setIsLogout(true);
         setLoading(false);
         setTimeout(() => {
             contextModal.setIsLogout(false);
-        }, 2200);
+        }, 1500);
     };
 
     return (

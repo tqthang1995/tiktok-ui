@@ -104,8 +104,6 @@ function Header() {
     const contextLogin = useContext(LoginContext);
 
     const userMenuTab = contextLogin.data ? userMenu : MENU_ITEMS;
-    console.log(contextLogin.data);
-    console.log(userMenuTab);
 
     return (
         <header className={cx('wrapper')}>
@@ -115,11 +113,16 @@ function Header() {
                 </Link>
                 <Search></Search>
                 <div className={cx('action')}>
-                    <Button className={cx('upload')} outlineSecondary leftIcon={<FontAwesomeIcon icon={faPlus} />}>
-                        Upload
-                    </Button>
                     {contextLogin.data ? (
                         <>
+                            <Button
+                                className={cx('upload')}
+                                to={config.routes.upload}
+                                outlineSecondary
+                                leftIcon={<FontAwesomeIcon icon={faPlus} />}
+                            >
+                                Upload
+                            </Button>
                             <Tippy delay={[0, 50]} content="Message" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <MessageIcon width="2.6rem" height="2.6rem" />
@@ -134,6 +137,13 @@ function Header() {
                         </>
                     ) : (
                         <>
+                            <Button
+                                className={cx('upload')}
+                                outlineSecondary
+                                leftIcon={<FontAwesomeIcon icon={faPlus} onClick={contextModal.handleShowModal} />}
+                            >
+                                Upload
+                            </Button>
                             <Button primary onClick={contextModal.handleShowModal}>
                                 Log in
                             </Button>

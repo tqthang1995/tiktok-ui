@@ -22,12 +22,12 @@ function LoginForm() {
     const contextLogin = useContext(LoginContext);
 
     const handleSubmit = () => {
-        contextLogin.fetchApi(emailTemp, password);
+        contextLogin.loginApi(emailTemp, password);
     };
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter' && !hasSpace && pattern.test(emailTemp) && pattern.test(password)) {
-            e.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
+            e.preventDefault();
             handleSubmit();
         }
     };

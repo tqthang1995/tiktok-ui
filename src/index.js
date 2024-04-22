@@ -5,6 +5,8 @@ import reportWebVitals from '~/reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
 import ModalProvider from './components/ModalProvider';
 import LoginProvider from './components/LoginProvider';
+import VideoProvider from './components/VideoProvider';
+import CommentProvider from './components/CommentProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,7 +14,11 @@ root.render(
         <GlobalStyles>
             <ModalProvider>
                 <LoginProvider>
-                    <App />
+                    <CommentProvider>
+                        <VideoProvider>
+                            <App />
+                        </VideoProvider>
+                    </CommentProvider>
                 </LoginProvider>
             </ModalProvider>
         </GlobalStyles>
