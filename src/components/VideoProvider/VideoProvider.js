@@ -9,7 +9,6 @@ function VideoProvider({ children }) {
 
     const handleAdjustVolume = (e) => {
         const volume = e.target.value;
-        console.log('volume:', volume);
         if (volume === '0') {
             setVolume(0);
             setIsMute(true);

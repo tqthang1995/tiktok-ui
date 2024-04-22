@@ -47,9 +47,9 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
         //&& videoRef.current.readyState === 4
         //This is a condition check load done video
         //because some video not provide full source
-        //all of them is provided so i dont give it to my source code
+        //all of them is provided so i don't give it to my source code
 
-        if (myElementIsVisible && videoRef.current) {
+        if (myElementIsVisible && videoRef.current && videoRef.current.readyState === 4) {
             setIsPlaying(true);
             videoRef.current.play();
         } else if (!myElementIsVisible && videoRef.current) {
@@ -147,8 +147,6 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
         console.log('Unliked result: ', result);
     };
 
-    console.log(contextVideo);
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('video-card')}>
@@ -164,6 +162,9 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
                     ref={videoRef}
                     src={children}
                     onEnded={handleVideoEnded}
+                    onError={(e) => {
+                        console.error('Error loading the video:', e.target.error);
+                    }}
                 ></video>
                 <div className={cx('controls')}>
                     <div className={cx('play-pause')} onClick={toggleVideo}>

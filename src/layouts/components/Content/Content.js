@@ -12,7 +12,7 @@ function Content({ data }) {
     return (
         <div className={cx('wrapper')}>
             {data.map((item, index) => (
-                <div key={item.id} className={cx('video-item')}>
+                <div key={index} className={cx('video-item')}>
                     <VideoInfoOverlay item={item} />
                     <VideoItem idVideo={item.id} uuidVideo={item.uuid} item={item}>
                         {item.file_url}

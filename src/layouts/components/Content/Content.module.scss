@@ -1,9 +1,9 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    -webkit-box-align: center;
-    align-items: center;
-    width: 1000px;
+    --width-default-content: 692px;
+
+    width: var(--width-default-content);
+    margin-left: 210px;
+    margin-right: auto;
 }
 
 .video-item {
