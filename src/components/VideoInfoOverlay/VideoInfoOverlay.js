@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { BlueTickIcon } from '../Icons';
 import Image from '../Images';
@@ -10,10 +10,15 @@ import Button from '../Button';
 import { MusicIcon } from '~/components/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountPreviewOverlay from './AccountPreviewOverlay';
+import { ModalContext } from '../ModalProvider';
+import { LoginContext } from '../LoginProvider';
 
 const cx = classNames.bind(styles);
 
 function VideoInfoOverlay({ item }) {
+    const contextModal = useContext(ModalContext);
+    const contextLogin = useContext(LoginContext);
+
     const renderPreview = (props) => (
         <div tabIndex="-1" {...props}>
             <PopperWrapper className={cx('menu-popper')}>
@@ -51,15 +56,29 @@ function VideoInfoOverlay({ item }) {
                     <span className={cx('music-name')}> {(item && item.music) || 'Sound in video!'}</span>
                 </Link>
             </div>
-            {!isFollow && (
-                <Button className={cx('button-follow')} outline small onClick={() => setIsFollow(true)}>
-                    Follow
-                </Button>
+            {contextLogin.data && (
+                <>
+                    {!isFollow && (
+                        <Button className={cx('button-follow')} outline small onClick={() => setIsFollow(true)}>
+                            Follow
+                        </Button>
+                    )}
+                    {isFollow && (
+                        <button className={cx('button-following')} onClick={() => setIsFollow(false)}>
+                            Following
+                        </button>
+                    )}
+                </>
             )}
-            {isFollow && (
-                <button className={cx('button-following')} onClick={() => setIsFollow(false)}>
-                    Following
-                </button>
+
+            {!contextLogin.data && (
+                <>
+                    {!isFollow && (
+                        <Button className={cx('button-follow')} outline small onClick={contextModal.handleShowModal}>
+                            Follow
+                        </Button>
+                    )}
+                </>
             )}
         </div>
     );
