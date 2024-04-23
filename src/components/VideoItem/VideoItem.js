@@ -169,6 +169,7 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
                     onError={(e) => {
                         console.error('Error loading the video:', e.target.error);
                     }}
+                    playsinline
                 ></video>
                 <div className={cx('controls')}>
                     <div className={cx('play-pause')} onClick={toggleVideo}>
