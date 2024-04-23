@@ -164,14 +164,15 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
                     }}
                     onTimeUpdate={handleTimeUpdate}
                     ref={videoRef}
-                    src={children}
                     onEnded={handleVideoEnded}
                     onError={(e) => {
                         console.error('Error loading the video:', e.target.error);
                     }}
                     playsinline
                     preload="auto"
-                ></video>
+                >
+                    <source src={children} type="video/mp4"></source>
+                </video>
                 <div className={cx('controls')}>
                     <div className={cx('play-pause')} onClick={toggleVideo}>
                         {isPlaying ? <PLayIcon /> : <PauseIcon />}
