@@ -170,12 +170,9 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
                         console.error('Error loading the video:', e.target.error);
                     }}
                     playsinline
-                    controls
-                    autoplay
-                    loop
-                    muted
+                    preload="auto"
                 ></video>
-                {/* <div className={cx('controls')}>
+                <div className={cx('controls')}>
                     <div className={cx('play-pause')} onClick={toggleVideo}>
                         {isPlaying ? <PLayIcon /> : <PauseIcon />}
                     </div>
@@ -234,7 +231,7 @@ function VideoItem({ children, idVideo, uuidVideo, item }) {
                             }${secondsLoad}/${minutesTotal}:${secondsTotal < 10 ? '0' : ''}${secondsTotal}`}</div>
                         </div>
                     </div>
-                </div> */}
+                </div>
             </div>
             {contextLogin.data && (
                 <div className={cx('icons-video')}>
